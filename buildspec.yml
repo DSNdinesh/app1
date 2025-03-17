@@ -1,0 +1,20 @@
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9  # Change this to match your AWS CodeBuild environment
+    commands:
+      - echo "Installing dependencies..."
+      - pip3 install --upgrade pip
+      - pip3 install --no-cache-dir -r requirements.txt
+
+  build:
+    commands:
+      - echo "Building application..."
+      - python3 app.py &  # Start Flask app in the background
+
+  post_build:
+    commands:
+      - echo "Build completed successfully."
